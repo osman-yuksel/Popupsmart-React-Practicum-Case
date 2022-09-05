@@ -14,7 +14,16 @@ async function GetToDos(){
         element.classList.add("todo");
         if(todo.isCompleted) element.classList.add("completed-todo");
         element.setAttribute("data-id",todo.id);
-        
+
+        const loadingAnim = document.createElement("img");
+        loadingAnim.src = "src/icons/Rolling-1s-200px.svg";
+        loadingAnim.classList.add("loading-anim");
+        const loadingAnimContainer = document.createElement("div");
+        loadingAnimContainer.classList.add("loading-anim-container");
+        loadingAnimContainer.classList.add("hidden");
+        loadingAnimContainer.appendChild(loadingAnim);
+        element.appendChild(loadingAnimContainer);
+
         const completedCheckbox = document.createElement("input");
         completedCheckbox.type = "checkbox";
         completedCheckbox.checked = todo.isCompleted;
@@ -77,9 +86,9 @@ async function DeleteToDo(todoId){
 
 async function UpdateToDo(element, todoContent){
     const childs = element.childNodes;
-    const contentCheck = todoContent === "" ? childs[1].innerHTML : todoContent;
+    const contentCheck = todoContent === "" ? childs[2].innerHTML : todoContent;
     const todo = {
-        isCompleted: childs[0].checked,
+        isCompleted: childs[1].checked,
         content: contentCheck,
         id: element.dataset.id
     }
@@ -92,6 +101,8 @@ async function UpdateToDo(element, todoContent){
         }
     }
 
+    childs[0].classList.remove("hidden");
+
     fetch(url + '/' + element.dataset.id, options)
     .then(res => res.json())
     .then((res) => { console.log(res); GetToDos(); })
@@ -102,20 +113,20 @@ function EditMode(element){
     
     const editText = document.createElement("input");
     editText.type = "text";
-    editText.value = childs[1].innerHTML;
-    element.replaceChild(editText, childs[1]);
+    editText.value = childs[2].innerHTML;
+    element.replaceChild(editText, childs[2]);
 
     const saveButton = document.createElement("button");
     saveButton.type = "button";
     saveButton.innerHTML = "Save";
     saveButton.addEventListener("click", (element) => { SaveToDo(element.target.parentNode) })
-    element.replaceChild(saveButton, childs[2]);
+    element.replaceChild(saveButton, childs[3]);
 
     const discardButton = document.createElement("button");
     discardButton.innerHTML = "Discard";
     discardButton.type = "button";
     discardButton.addEventListener("click", () => { GetToDos() });
-    element.replaceChild(discardButton, childs[3]);
+    element.replaceChild(discardButton, childs[4]);
 
     const editIcon = document.createElement("img");
     editIcon.src = "src/icons/edit.png";
@@ -123,13 +134,13 @@ function EditMode(element){
     const editIconContainer = document.createElement("div");
     editIconContainer.classList.add("edit-icon-container");
     editIconContainer.appendChild(editIcon);
-    element.replaceChild(editIconContainer, childs[0]);
+    element.replaceChild(editIconContainer, childs[1]);
     
     console.log(element);
 }
 
 function SaveToDo(element){
-    UpdateToDo(element, element.childNodes[1].value);
+    UpdateToDo(element, element.childNodes[2].value);
 }
 GetToDos();
 

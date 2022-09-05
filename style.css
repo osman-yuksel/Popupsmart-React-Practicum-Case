@@ -1,6 +1,9 @@
+.hidden{
+    visibility: hidden;
+}
 .todo{
     display: grid;
-    grid-template-columns: 1fr 4fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 20fr 2fr 2fr;
     border: 1px solid black;
 }
 
@@ -28,6 +31,10 @@
 
 .add-todo-container>*{
     margin-right: 20px;
+}
+
+.loading-anim{
+    height: 50px;
 }
 
 .edit-icon{
