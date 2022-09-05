@@ -1,8 +1,45 @@
 .todo{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 1fr 4fr 1fr 1fr;
+    border: 1px solid black;
+}
+
+.todo>*{
+    margin-right: 20px;
+    min-width: 50px;
 }
 
 .completed-todo > p{
     text-decoration: line-through;
+}
+
+.todo-container{
+    border: 1px solid red;
+    display: grid;
+    grid-template-columns: 1;
+}
+
+.add-todo-container{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid blue;
+    margin-left: 20px;
+}
+
+.add-todo-container>*{
+    margin-right: 20px;
+}
+
+.edit-icon{
+    height: 50px;
+    margin-left: 6px;
+}
+
+.edit-icon-container{
+    display: flex;
+    justify-content: center;
+}
+
+.header-container{
+    height: 100px;
 }
