@@ -2,6 +2,7 @@ const url = "https://630f50ec37925634188c9818.mockapi.io/todos";
 let todoContainer = document.querySelector(".todo-container");
 const addButton = document.getElementById("add-todo-button");
 const addContent = document.getElementById("add-todo-content");
+const addToDoLoadingAnim = document.querySelector(".add-todo-loading-anim");
 addButton.addEventListener("click", () => { AddToDo(addContent.value); })
 
 async function GetToDos(){
@@ -9,6 +10,7 @@ async function GetToDos(){
     .then((todos) => { todoContainer.innerHTML = ''; todos.map((todo) => { 
 
         addContent.value = "";
+        addToDoLoadingAnim.classList.add("hidden");
         
         const element = document.createElement("div");
         element.classList.add("todo");
@@ -38,13 +40,15 @@ async function GetToDos(){
         const editButton = document.createElement("button");
         editButton.innerHTML = "Edit";
         editButton.type = "button";
+        editButton.classList.add("edit-button");
         editButton.addEventListener("click", (element) => { EditMode(element.target.parentNode) });
         element.appendChild(editButton);
         
         const deleteButton = document.createElement("button");
         deleteButton.innerHTML = 'X';
         deleteButton.type = "button";
-        deleteButton.addEventListener("click", (element) => { DeleteToDo(element.target.parentNode.dataset.id) });
+        deleteButton.classList.add("delete-button");
+        deleteButton.addEventListener("click", (element) => { DeleteToDo(element.target.parentNode) });
         element.appendChild(deleteButton);
 
 
@@ -68,18 +72,22 @@ async function AddToDo(todoContent){
             "Content-Type": "application/json"
         }
     }
+
+    addToDoLoadingAnim.classList.remove("hidden");
     
     fetch(url, options)
     .then(res => res.json())
     .then((res) => { console.log(res); GetToDos(); });
 }
 
-async function DeleteToDo(todoId){
+async function DeleteToDo(element){
     const options = {    
         method: "DELETE",
     }
     
-    fetch(url + '/'+ todoId, options)
+    element.childNodes[0].classList.remove("hidden");
+
+    fetch(url + '/'+ element.dataset.id, options)
     .then(res => res.json())
     .then((res) => { console.log(res); GetToDos(); });
 }
@@ -113,23 +121,26 @@ function EditMode(element){
     
     const editText = document.createElement("input");
     editText.type = "text";
+    editText.classList.add("todo-edit-text");
     editText.value = childs[2].innerHTML;
     element.replaceChild(editText, childs[2]);
 
     const saveButton = document.createElement("button");
     saveButton.type = "button";
     saveButton.innerHTML = "Save";
+    saveButton.classList.add("save-button");
     saveButton.addEventListener("click", (element) => { SaveToDo(element.target.parentNode) })
     element.replaceChild(saveButton, childs[3]);
 
     const discardButton = document.createElement("button");
     discardButton.innerHTML = "Discard";
     discardButton.type = "button";
-    discardButton.addEventListener("click", () => { GetToDos() });
+    discardButton.classList.add("discard-button");
+    discardButton.addEventListener("click", () => { childs[0].classList.remove("hidden"); GetToDos() });
     element.replaceChild(discardButton, childs[4]);
 
     const editIcon = document.createElement("img");
-    editIcon.src = "src/icons/edit.png";
+    editIcon.src = "src/icons/Pulse-1s-64px.svg";
     editIcon.classList.add("edit-icon");
     const editIconContainer = document.createElement("div");
     editIconContainer.classList.add("edit-icon-container");

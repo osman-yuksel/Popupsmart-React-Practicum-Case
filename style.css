@@ -1,52 +1,165 @@
+:root{
+    --font: 'Roboto', serif;
+    --header-container-heigt: 100px;
+    --header-h1-font-size: 30px;
+    --header-h1-font-type: bold;
+    --header-underline-color: rgb(0, 0, 77);
+    --add-todo-container-height: 50px;
+    --todo-container-margin: 100px;
+    --todo-container-top-margin: 10px;
+    --todo-backround-color: grey;
+    --global-font-size: 17px;
+}
+
+body{
+    font-family: var(--font);
+}
+
 .hidden{
     visibility: hidden;
 }
+
+.todo-container{
+    display: grid;
+    margin-left: var(--todo-container-margin);
+    margin-right: var(--todo-container-margin);
+    font-size: 20px;
+}
 .todo{
     display: grid;
-    grid-template-columns: 1fr 2fr 20fr 2fr 2fr;
-    border: 1px solid black;
+    grid-template-columns: 1fr 1fr 20fr 2fr 2fr;
+    border: 0px solid black;
+    box-shadow: 4px 3px 8px 1px #969696;
+    border-radius: 10px;
+    margin-top: var(--todo-container-top-margin);
+    align-items: center;
 }
+.todo:hover{
+    transform: scale(1.02);
 
-.todo>*{
-    margin-right: 20px;
+}
+.todo > button{
+    height: 40px;
+    margin-right: 10px;
     min-width: 50px;
+    font-size: 20px;
+    background: white;
 }
-
+.todo > input{
+    height: 40px;
+    width: 40px;
+    margin-right: 20px;
+}
+.todo > .edit-icon-container{
+    margin-right: 10px;
+}
+.todo > .todo-edit-text{
+    min-width: 95%;
+    margin-right: 20px;
+    border: 2px solid rgb(4, 117, 0);
+    border-radius: 10px;
+}
+.todo > .todo-edit-text:focus{
+    border: none;
+    border-radius: 0px;
+}
+.todo > .delete-button{
+    color: red;
+    border: 2px solid red;
+    border-radius: 10px;
+}
+.todo > .delete-button:hover{
+    background-color: rgb(255, 194, 194);
+    transform: scale(1.1);
+}
+.todo > .edit-button{
+    color: rgb(0, 81, 255);
+    border: 2px solid rgb(0, 81, 255);
+    border-radius: 10px;
+}
+.todo > .edit-button:hover{
+    background-color: rgb(170, 195, 247);
+    transform: scale(1.1);
+}
+.todo > .save-button{
+    color: rgb(4, 117, 0);
+    border: 2px solid rgb(4, 117, 0);
+    border-radius: 10px;
+}
+.todo > .save-button:hover{
+    background-color: rgb(179, 247, 170);
+    transform: scale(1.1);
+}
+.todo > .discard-button{
+    color: red;
+    border: 2px solid red;
+    border-radius: 10px;
+    min-width: 80px;
+}
+.todo > .discard-button:hover{
+    background-color: rgb(255, 194, 194);
+    transform: scale(1.1);
+}
 .completed-todo > p{
     text-decoration: line-through;
 }
-
-.todo-container{
-    border: 1px solid red;
-    display: grid;
-    grid-template-columns: 1;
+.todo-edit-text{
+    font-size: 20px;
 }
 
 .add-todo-container{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    border: 1px solid blue;
-    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    border: 0px solid blue;
+    margin-right: var(--todo-container-margin);
+    margin-left: var(--todo-container-margin);
+    align-items: center;
+    box-shadow: 4px 3px 8px 1px #969696;
+    border-radius: 10px;
 }
-
 .add-todo-container>*{
-    margin-right: 20px;
+    height: var(--add-todo-container-height);
 }
-
+.add-todo-container > #add-todo-button{
+    width: 80px;
+    color: rgb(0, 81, 255);
+    border: 2px solid rgb(0, 81, 255);
+    border-radius: 10px;
+    font-size: 20px;
+    margin-right: 20px;
+    background-color: white;
+    height: 50px;
+}
+.add-todo-container > #add-todo-button:hover{
+    background-color: rgb(170, 195, 247);
+    transform: scale(1.1);
+}
+#add-todo-content{
+    width: 100%;
+    border-radius: 10px;
+    border: 2px solid rgb(0, 81, 255);
+    font-size: 20px;
+}
 .loading-anim{
     height: 50px;
+    width: 60px;
 }
 
 .edit-icon{
     height: 50px;
-    margin-left: 6px;
 }
-
 .edit-icon-container{
     display: flex;
     justify-content: center;
 }
 
 .header-container{
-    height: 100px;
+    height: var(--header-container-heigt);
+    font-size: var(--header-h1-font-size);
+    font-weight: var(--header-h1-font-type);
+    color: rgb(0, 0, 77);
+}
+.header-container > h1{
+    border-bottom: 2px solid var(--header-underline-color);
+    margin-left: 50px;    
 }
