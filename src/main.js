@@ -1,8 +1,10 @@
 const url = "https://630f50ec37925634188c9818.mockapi.io/todos";
 let todoContainer = document.querySelector(".todo-container");
-const addButton = document.getElementById("add-todo-button");
 const addContent = document.getElementById("add-todo-content");
 const addToDoLoadingAnim = document.querySelector(".add-todo-loading-anim");
+const usernameEditButton = document.querySelector(".username-edit-button");
+usernameEditButton.addEventListener("click", (element) => EditUsername(element));
+const addButton = document.getElementById("add-todo-button");
 addButton.addEventListener("click", () => { AddToDo(addContent.value); })
 
 async function GetToDos(){
@@ -154,4 +156,17 @@ function SaveToDo(element){
     UpdateToDo(element, element.childNodes[2].value);
 }
 GetToDos();
+
+
+function EditUsername(element){
+    console.log(element.target.parentNode);
+}
+
+function SaveUsername(element){
+    console.log(element.target.parentNode);
+}
+
+function LoadUsername(){
+}
+
 
