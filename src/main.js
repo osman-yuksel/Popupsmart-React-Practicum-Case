@@ -1,5 +1,5 @@
 //App variables.
-const url = "Will be added.";
+const url = "https://630f50ec37925634188c9818.mockapi.io/todos";
 let todoContainer = document.querySelector(".todo-container");
 const addContent = document.getElementById("add-todo-content");
 addContent.addEventListener("mouseover", () => addContent.classList.remove("required"));
