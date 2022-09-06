@@ -19,6 +19,26 @@ body{
     visibility: hidden;
 }
 
+.required{
+    border: 2px solid red !important;
+    animation: shake 0.4s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-1px, 0, 0);
+    }
+    20%, 80% {
+      transform: translate3d(2px, 0, 0);
+    }
+    30%, 50%, 70% {
+      transform: translate3d(-4px, 0, 0);
+    }
+    40%, 60% {
+      transform: translate3d(4px, 0, 0);
+    }
+  }
+
 .todo-container{
     display: grid;
     margin-left: var(--todo-container-margin);
@@ -36,7 +56,6 @@ body{
 }
 .todo:hover{
     transform: scale(1.02);
-
 }
 .todo > button{
     height: 40px;
@@ -69,8 +88,9 @@ body{
     border-radius: 10px;
 }
 .todo > .delete-button:hover{
-    background-color: rgb(255, 194, 194);
+    background-color: rgb(255, 233, 233);
     transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
 }
 .todo > .edit-button{
     color: rgb(0, 81, 255);
@@ -78,8 +98,9 @@ body{
     border-radius: 10px;
 }
 .todo > .edit-button:hover{
-    background-color: rgb(170, 195, 247);
+    background-color: rgb(235, 242, 252);
     transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
 }
 .todo > .save-button{
     color: rgb(4, 117, 0);
@@ -89,6 +110,7 @@ body{
 .todo > .save-button:hover{
     background-color: rgb(179, 247, 170);
     transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
 }
 .todo > .discard-button{
     color: red;
@@ -97,8 +119,9 @@ body{
     min-width: 80px;
 }
 .todo > .discard-button:hover{
-    background-color: rgb(255, 194, 194);
+    background-color: rgb(255, 233, 233);
     transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
 }
 .completed-todo > p{
     text-decoration: line-through;
@@ -119,6 +142,7 @@ body{
 }
 .add-todo-container:hover{
     transform: scale(1.02);
+    transition: transform 0.1s ease-in-out;
 }
 .add-todo-container>*{
     height: var(--add-todo-container-height);
@@ -134,7 +158,7 @@ body{
     height: 50px;
 }
 .add-todo-container > #add-todo-button:hover{
-    background-color: rgb(170, 195, 247);
+    background-color: rgb(235, 242, 252);
     transform: scale(1.1);
 }
 #add-todo-content{
@@ -170,6 +194,12 @@ body{
     margin-top: 0px;
     border-bottom: 2px solid var(--header-underline-color);
     margin-left: 100px;   
+    text-shadow: 2px 2px 4px rgb(0, 16, 51);
+}
+.header-container > h1:hover{
+    transform: scale(1.2);
+    transition: transform 0.1s ease-in-out;
+    user-select: none;
 }
 .header-container > .username-container{
     display: flex;
@@ -179,7 +209,13 @@ body{
 }
 .username-container > .username{
     text-decoration: underline;
+    user-select: none;
     color: rgb(0, 81, 255);
+}
+.username-container > .username:hover{
+    transform: scale(1.2);
+    transition: transform 0.1s ease-in-out;
+    margin-right: 10px;
 }
 .username-edit-button{
     border: 2px solid rgb(0, 81, 255);
@@ -191,4 +227,37 @@ body{
     margin-left: 10px;
     margin-top: 4px;
     color: rgb(0, 81, 255);
+}
+.username-edit-button:hover{
+    transform: scale(1.2);
+    transition: transform 0.1s ease-in-out;
+}
+.username-edit-text > *{
+    height: 30px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: 2px solid rgb(0, 81, 255);
+    margin-right: 10px;
+    width: 150px;
+}
+.username-edit-text > *:hover{
+    transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
+}
+.username-edit-text > *:focus{
+    border:2px solid rgb(0, 81, 255);
+}
+.username-save-button{
+    border: 2px solid rgb(0, 81, 255);
+    font-size: 20px;
+    height: 35px;
+    width: 70px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 4px;
+    color: rgb(0, 81, 255);
+}
+.username-save-button:hover{
+    transform: scale(1.1);
+    transition: transform 0.1s ease-in-out;
 }
